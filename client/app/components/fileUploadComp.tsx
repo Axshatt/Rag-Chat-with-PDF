@@ -14,7 +14,7 @@ export default function FileUploadComp() {
                     const formData = new FormData()
                     formData.append("pdf", file)
 
-                    await fetch("http://localhost:3000/upload/pdf",{
+                    await fetch("http://localhost:8000/upload/pdf",{
                         method:"POST",
                         body:formData
                     })
