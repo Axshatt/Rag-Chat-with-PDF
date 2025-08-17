@@ -4,17 +4,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node --watch index.js",
+    "dev:worker": "node --watch worker.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "@google/genai": "^1.14.0",
+    "@langchain/community": "^0.3.51",
+    "@langchain/core": "^0.3.71",
+    "@langchain/google-genai": "^0.2.16",
+    "@langchain/textsplitters": "^0.1.0",
     "@types/express": "^5.0.3",
+    "bullmq": "^5.58.0",
     "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "multer": "^2.0.2",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "pdf-parse": "^1.1.1"
   }
 }
