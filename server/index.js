@@ -5,11 +5,16 @@ import { Queue } from 'bullmq';
 import { GoogleGenerativeAIEmbeddings } from "@langchain/google-genai";
 import { QdrantVectorStore } from '@langchain/qdrant';
 import { GoogleGenAI } from "@google/genai";
+import {config} from "dotenv";
+config();
+
+
+
 
 const queue = new Queue('file-upload-queue', {
   connection: {
     host: 'localhost',
-    port: '6379',
+    port: "6379",
   },
 });
 
@@ -45,11 +50,11 @@ app.post('/upload/pdf', upload.single('pdf'), async (req, res) => {
 });
 
 app.get('/chat', async (req, res) => {
-  const userQuery = req.query.message;
+  const userQuery = "how to make a new branch";
 
   const embeddings = new GoogleGenerativeAIEmbeddings({
       model: "embedding-001", // Gemini embeddings
-      apiKey: process.env.GEMINI_API,
+      apiKey: "AIzaSyCdLSH1034TkLnDIllSV24UZQrrJyu3tzA",
     });
   const vectorStore = await QdrantVectorStore.fromExistingCollection(
     embeddings,
@@ -62,7 +67,7 @@ app.get('/chat', async (req, res) => {
     k: 2,
   });
   const result = await ret.invoke(userQuery);
-  const client = new GoogleGenAI({apiKey:process.env.GEMINI_API});
+  const client = new GoogleGenAI({apiKey:"AIzaSyCdLSH1034TkLnDIllSV24UZQrrJyu3tzA"});
   const SYSTEM_PROMPT = `
   You are helfull AI Assistant who answeres the user query based on the available context from PDF File.
   Context:
@@ -76,10 +81,11 @@ app.get('/chat', async (req, res) => {
   ]
 });
 
-
+  console.log(chatResult);
+  
   return res.json({
-    message: chatResult.text,
-    docs: result,
+    msg:chatResult.text
+    
   });
 });
 

@@ -21,6 +21,8 @@ const worker = new Worker(
       chunkSize: 1000,   // characters per chunk
       chunkOverlap: 200, // overlap helps preserve context
     });
+    
+    
 
     const docs = await splitter.splitDocuments(rawDocs);
     console.log(`📄 Loaded ${rawDocs.length} docs, split into ${docs.length} chunks`);
@@ -29,9 +31,9 @@ const worker = new Worker(
     // 3. Create Gemini Embeddings
     const embeddings = new GoogleGenerativeAIEmbeddings({
       model: "embedding-001", // Gemini embeddings
-      apiKey: process.env.GEMINI_API,
+      apiKey: "AIzaSyCdLSH1034TkLnDIllSV24UZQrrJyu3tzA",
     });
-    console.log(docs);
+
     
 
     // 4. Store in Qdrant
