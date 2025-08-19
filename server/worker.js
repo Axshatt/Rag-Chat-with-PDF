@@ -31,7 +31,7 @@ const worker = new Worker(
     // 3. Create Gemini Embeddings
     const embeddings = new GoogleGenerativeAIEmbeddings({
       model: "embedding-001", // Gemini embeddings
-      apiKey: "AIzaSyCdLSH1034TkLnDIllSV24UZQrrJyu3tzA",
+      apiKey: process.env.GOOGLE_API_KEY,
     });
 
     

@@ -39,10 +39,15 @@ const ChatComponent: React.FC = () => {
     setMessage(''); // clear input
 
     try {
+      const selectedFile = "myNewPDF.pdf"; // later make this dynamic
+
       const res = await fetch(
-        `http://localhost:8000/chat?message=${encodeURIComponent(message)}`
+        `http://localhost:8000/chat?message=${encodeURIComponent(message)}&file=${encodeURIComponent(selectedFile)}`
       );
+
       const data = await res.json();
+      console.log(data);
+
 
       // Push assistant message
       const assistantMessage: IMessage = {
@@ -67,23 +72,21 @@ const ChatComponent: React.FC = () => {
         {messages.map((msg, i) => (
           <div
             key={i}
-            className={`mb-3 flex ${
-              msg.role === 'user' ? 'justify-end' : 'justify-start'
-            }`}
+            className={`mb-3 flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'
+              }`}
           >
             <div
-              className={`max-w-xs rounded-lg px-4 py-2 shadow-md text-sm ${
-                msg.role === 'user'
+              className={`max-w-xs rounded-lg px-4 py-2 shadow-md text-sm ${msg.role === 'user'
                   ? 'bg-blue-500 text-white'
                   : 'bg-gray-200 text-gray-900'
-              }`}
+                }`}
             >
               {msg.content}
               {msg.documents && msg.documents.length > 0 && (
                 <div className="mt-2 text-xs text-gray-700">
                   <strong>Sources:</strong>
                   <ul className="list-disc ml-4">
-                    {msg.documents.map((doc, j) => (
+                    {msg.documents.map((doc, j,) => (
                       <li key={j}>{doc.metadata?.source ?? 'Unknown'}</li>
                     ))}
                   </ul>
