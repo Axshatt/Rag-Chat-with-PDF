@@ -8,7 +8,7 @@ export default function Home() {
         <div className="min-w-[35vw]  p-[5vw] justify-center content-center items-center">
           <FileUploadComp></FileUploadComp>
         </div>
-        <div className="min-w-[65vw]"></div>
+        
         <ChatComponent/>
 
       </div>
